@@ -12,8 +12,8 @@ const io = new Server(server, {
     cors: {
       origin: "*"
     }
-  });
-
+});
+const port = process.env.PORT || 3000
 /* 
     false = Stream is Offline
     true = Stream is Online
@@ -79,6 +79,6 @@ function sendNoti(i){
 }
 
 
-server.listen(3000, () => {
+server.listen(port, () => {
     console.log(process.env.TWITCH_CLIENT_ID, 'YFL - listening on *:3000');
 });
