@@ -80,5 +80,5 @@ function sendNoti(i){
 
 
 server.listen(3000, () => {
-    console.log('YFL - listening on *:3000');
+    console.log(process.env.TWITCH_CLIENT_ID, 'YFL - listening on *:3000');
 });
