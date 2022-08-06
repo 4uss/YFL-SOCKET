@@ -1,0 +1,22 @@
+{
+   "author": "3xanax",
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "icons/128.png"
+      },
+      "default_popup": "popup.html"
+   },
+   "description": " ",
+   "icons": {
+      "128": "icons/128.png",
+      "32": "icons/32.png",
+      "64": "icons/64.png"
+   },
+   "manifest_version": 2,
+   "name": "YFL Updates",
+   "permissions": ["notifications", "https://static-cdn.jtvnw.net/*"],
+   "version": "1.0.6"
+}

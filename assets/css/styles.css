@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+
+body{
+    background-color: black;
+    font-family: 'PT Mono', monospace;
+}
+.yfl_logo{
+    height: 10rem;
+}
+.mono_font{
+    font-family: 'Monofett', cursive;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+#youngmulti a:hover{
+    color: #ff1919;
+}
+#xmerghani a:hover{
+    color: #00ffc0;
+}
+#mrdzinold a:hover{
+    color: #00df9e;
+}
+#banduracartel a:hover{
+    color: #0055ff;
+}
+#mork a:hover{
+    color: #620000;
+}
+#xkaleson a:hover{
+    color: #00ffff;
+}
+#adrian1g__ a:hover{
+    color: #a970ff;
+}
+.yfl__switch {
+    text-align: center;
+    height: 26px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 120px;
+}
+.yfl__im__live a p{
+    border: 2px solid #a1a1a1;
+    border-radius: 5px;
+    padding-left: 1rem;
+    background: white;
+    color: black;
+}
+.yfl__im__live a p::after{
+    content: " LIVE!";
+    color: red;
+    font-weight: bolder;
+}
+.yfl__other__side{
+    left: 0;
+}
+.yfl__buton_active {
+    border-radius: 7px;
+    font-weight: bold;
+    background-color: var(--bs-purple);
+    padding: .25rem!important;
+    cursor: pointer;
+}
+.yfl__buton {
+    border-radius: 7px;
+    padding: .25rem!important;
+    background-color: rgba(0,0,0,0.29);
+    cursor: pointer;
+}
+.yfl_channel{
+    background-color: rgba(0,0,0,0.29);
+    border-radius: 7px;
+    line-height: 30px;
+    padding: 3px 10px 2px!important;
+    position: relative;
+    width: calc(100% - 20px);
+}
+.bb__hr__position {
+  display: grid;
+  place-items: center;
+}
+.bb__hr {
+  width: 30%;
+  height: 2px;
+  background: #fff;
+}
+.bb__select{
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+}
+.bb__select option{
+  background: rgb(0, 0, 0);
+  border: 0;
+  color: #fff;
+}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{border-radius:8px;background:#181818}::-webkit-scrollbar-thumb{border-radius:8px;background-color:white}

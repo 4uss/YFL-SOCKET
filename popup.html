@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>YFL Updates</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <script type="text/javascript" src="websocket/socket.io.js"></script>
+    </head>
+    <body style="min-width: 400px;max-width: 400px">
+        <div class="container pt-1 pb-1">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12">
+                    <div class="m-1 text-center">
+                        <img src="assets/img/logo.png" class="img-fluid yfl_logo"/>
+                        <h1>UPDATES</h1>
+                    </div>
+                    <div class="yfl_channels">
+                        <h3 class="mono_font pe-1 text-end">OFFICIAL</h3>
+                        <div class="yfl_channel m-1" id="youngmulti">
+                            <a href="https://www.twitch.tv/youngmulti" target="_blank">
+                                <p>YOUNGMULTI</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <div class="yfl_channel m-1" id="xmerghani">
+                            <a href="https://www.twitch.tv/xmerghani" target="_blank">
+                                <p>XMERGHANI</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <div class="yfl_channel m-1" id="mrdzinold">
+                            <a href="https://www.twitch.tv/mrdzinold" target="_blank">
+                                <p>MRDZINOLD</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <div class="yfl_channel m-1" id="banduracartel">
+                            <a href="https://www.twitch.tv/banduracartel" target="_blank">
+                                <p>BANDURACARTEL</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <div class="yfl_channel m-1" id="mork">
+                            <a href="https://www.twitch.tv/mork" target="_blank">
+                                <p>MORK</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <h3 class="mono_font pe-1 text-end">FRIENDS</h3>
+                        <div class="yfl_channel m-1" id="xkaleson">
+                            <a href="https://www.twitch.tv/xkaleson" target="_blank">
+                                <p>XKALESON</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                        <div class="yfl_channel m-1" id="adrian1g__">
+                            <a href="https://www.twitch.tv/adrian1g__" target="_blank">
+                                <p>ADRIAN1G</p>
+                            </a>
+                            <div class="yfl__switch">
+                                <span class="yfl__buton" bb-type="button__off">Off</span>
+                                <span class="m-1"></span>
+                                <span class="yfl__buton_active" bb-type="button__on">On</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="bb__hr__position">
+                        <div class="bb__hr"></div>
+                    </div>
+                    <div class="text-center bb__topka p-1 mt-3">
+                        <h5 class="bb-no-p-m">Ogólne ustawienia</h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="yfl_channel m-2 alerts">
+                        <div><span class="bb__channel fw-bold">Alerty (powiadomienie)</span></div>
+                        <div class="yfl__switch"><span class="yfl__buton" bb-type="button__off">Off</span><span class="m-1"></span><span class="yfl__buton_active" bb-type="button__on">On</span></div>
+                    </div>
+                    <div class="yfl_channel m-2 alerts__audio" style="background-color: rgba(0,0,0,0.29);">
+                        <div><span class="bb__channel">Alerty (dzwięk)</span></div>
+                        <div class="yfl__switch"><span class="yfl__buton" bb-type="button__off">Off</span><span class="m-1"></span><span class="yfl__buton_active" bb-type="button__on">On</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="bb__hr__position">
+                        <div class="bb__hr"></div>
+                    </div>
+                    <div class="text-center bb__topka p-1 mt-3">
+                        <h5 class="bb-no-p-m">Audio ustawienia</h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="bb-option m-2">
+                        <p>Aktualny: <b class="bb__current__alarm" style="color: var(--bs-purple);"></b></p>
+                        <div class="bb__hr__position">
+                            <div class="bb__hr"></div>
+                        </div>
+                        <select class="form-select bb__select">
+                        </select>
+                        <input type="range" class="form-control-range bb__range" min="0.01" max="1.0" step="0.01" value="0.08" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 mb-3">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <small class="bb__footer"><a href="https://www.twitch.tv/3xanax" target="_blank" style="color: #fff;text-decoration: none;font-weight: bold;">seven7s.top - 3xanax</a><br>&copy; 2022</small>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/index.js"></script>
+</html>
