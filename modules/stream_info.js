@@ -20,6 +20,7 @@ const stream_info = async () => {
 
         return twitch_data;
 
+
     } catch (err) {
         if(err.response.data.status === 401 && err.response.data.error === "Unauthorized"){
             const token = await update_token();

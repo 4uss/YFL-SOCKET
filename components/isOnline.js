@@ -43,6 +43,9 @@ var isOnline = function(data, crew) {
     case 'mork':
       returnInfo = check(crew.mork, "mork")
       break;
+    case 'xspeedyq':
+      returnInfo = check(crew.xspeedyq, "xspeedyq")
+      break;
     case 'xkaleson':
       returnInfo = check(crew.xkaleson, "xkaleson")
       break;
