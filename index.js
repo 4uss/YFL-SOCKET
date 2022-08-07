@@ -4,6 +4,7 @@ import http from "http";
 import {Server} from "socket.io";
 import {stream_info, send_tweet} from "./modules/index.js";
 import {isOnline} from "./components/index.js";
+import fs from "fs";
 dotenv.config()
 
 const app = express();
@@ -25,9 +26,15 @@ let yfl = {
     mrdzinold: false,
     banduracartel: false,
     mork: false,
+    xspeedyq: false,
     xkaleson: false,
     adrian1g__: false
 }
+
+process
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT', shutdown('SIGINT'))
+  .on('uncaughtException', shutdown('uncaughtException'));
 
 app.get('/', function (req, res) {
     res.send(`
@@ -36,7 +43,7 @@ app.get('/', function (req, res) {
         <head> 
             <meta charset="utf-8" /> 
             <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /> 
-            <title>YFLUPDATES SOCKET</title> 
+            <title>YFL UPDATES SOCKET</title> 
             <meta property="og:type" content="website" /> 
             <link rel="icon" type="image/png" sizes="560x560" href="https://cdn.beyondlabs.pl/assets/img/logo512.png" /> 
             <style> 
@@ -72,7 +79,6 @@ io.on('connection', (socket) => {
 
 setInterval(() => {
     stream_analyzing(yfl)
-    console.log('HEROKU - Stream_analyzing')
 }, 60 * 1000);
 
 async function stream_analyzing(crew){
@@ -82,6 +88,7 @@ async function stream_analyzing(crew){
         mrdzinold: false,
         banduracartel: false,
         mork: false,
+        xspeedyq: false,
         xkaleson: false,
         adrian1g__: false  
     }
@@ -107,8 +114,26 @@ function sendNoti(i){
     send_tweet(i)
     //console.log(i)
 }
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${ signal }...`);
+    if (err) console.error(err.stack || err);
 
+    fs.writeFile("crew.json", JSON.stringify(yfl), (err) => {
+        if (err)
+          console.log(err);
+        else {
+          console.log("File written successfully");
+        }
+    });
 
+    setTimeout(() => {
+      console.log('...waited 5s, exiting.');
+      process.exit(err ? 1 : 0);
+    }, 5000).unref();
+  };
+}
 server.listen(port, () => {
     console.log(process.env.TWITCH_CLIENT_ID ? ("ENV IS WORKING"):("env is not working"), '- YFL - listening on *:3000');
+    yfl = JSON.parse(fs.readFileSync("crew.json", "utf8"))
 });

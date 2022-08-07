@@ -15,7 +15,7 @@ const stream_info = async () => {
     };
 
     try {
-        const resp = await axios.get(`https://api.twitch.tv/helix/streams?user_id=${process.env.YOUNGMULTI_ID}&user_id=${process.env.XMERGHANI_ID}&user_id=${process.env.MRDZINOLD_ID}&user_id=${process.env.BANDURACARTEL_ID}&user_id=${process.env.MORK_ID}&user_id=${process.env.XKALESON_ID}&user_id=${process.env.ADRIAN1G_ID}`, options)
+        const resp = await axios.get(`https://api.twitch.tv/helix/streams?user_id=${process.env.YOUNGMULTI_ID}&user_id=${process.env.XMERGHANI_ID}&user_id=${process.env.MRDZINOLD_ID}&user_id=${process.env.BANDURACARTEL_ID}&user_id=${process.env.MORK_ID}&user_id=${process.env.XKALESON_ID}&user_id=${process.env.ADRIAN1G_ID}&user_id=${process.env.XSPEEDYQ_ID}`, options)
         const twitch_data = resp.data.data;
 
         return twitch_data;
