@@ -1,6 +1,6 @@
 {
   "name": "yfl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "image-to-base64": "^2.2.0",
     "nodemon": "^2.0.19",
-    "socket.io": "^4.5.1"
+    "socket.io": "^4.5.1",
+    "twit": "^2.2.11"
   }
 }

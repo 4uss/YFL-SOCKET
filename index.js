@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
-import {stream_info} from "./modules/index.js";
+import {stream_info, send_tweet} from "./modules/index.js";
 import {isOnline} from "./components/index.js";
 dotenv.config()
 
@@ -14,6 +14,7 @@ const io = new Server(server, {
     }
 });
 const port = process.env.PORT || 3000
+
 /* 
     false = Stream is Offline
     true = Stream is Online
@@ -29,7 +30,7 @@ let yfl = {
 }
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    //console.log('a user connected');
     
     socket.emit('channels', yfl);
 
@@ -38,7 +39,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        //console.log('user disconnected');
     });
 });
 
@@ -75,10 +76,11 @@ async function stream_analyzing(crew){
 
 function sendNoti(i){
     io.sockets.emit('live notification', i);
+    send_tweet(i)
     //console.log(i)
 }
 
 
 server.listen(port, () => {
-    console.log(process.env.TWITCH_CLIENT_ID, 'YFL - listening on *:3000');
+    console.log(process.env.TWITCH_CLIENT_ID ? ("ENV IS WORKING"):("env is not working"), '- YFL - listening on *:3000');
 });
