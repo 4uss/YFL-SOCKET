@@ -1,10 +1,10 @@
 {
   "name": "yfl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "nodemon index",
     "dev": "nodemon index"
   },
   "author": "3xanax",
