@@ -45,6 +45,7 @@ io.on('connection', (socket) => {
 
 setInterval(() => {
     stream_analyzing(yfl)
+    console.log('HEROKU - Stream_analyzing')
 }, 60 * 1000);
 
 async function stream_analyzing(crew){
