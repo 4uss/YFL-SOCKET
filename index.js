@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
 import {stream_info, send_tweet} from "./modules/index.js";
-import {isOnline} from "./components/index.js";
 import fs from "fs";
 dotenv.config()
 
@@ -82,30 +81,18 @@ setInterval(() => {
 }, 60 * 1000);
 
 async function stream_analyzing(crew){
-    yfl = {
-        youngmulti: false,
-        xmerghani: false,
-        mrdzinold: false,
-        banduracartel: false,
-        mork: false,
-        xspeedyq: false,
-        xkaleson: false,
-        adrian1g__: false  
-    }
-    const streams = await stream_info();
+    const streams = await stream_info(crew);
 
-    streams.map(function(x) {
-        const isData = isOnline(x, crew);
-        if(isData.status === 777){
-            sendNoti({
-                nickname: x.user_name,
-                title: x.title,
-                thumbnail: `https://static-cdn.jtvnw.net/previews-ttv/live_user_${x.user_login}-1920x1080.jpg`
-            })
-            yfl[isData.json_name] = true;
-        }else if(isData.status === 1337){
-            yfl[isData.json_name] = true;
-        }
+    if(streams.error) return;
+
+    yfl = streams.channels;
+
+    streams.list.map(function(x) {
+        sendNoti({
+            nickname: x.nickname,
+            title: x.title,
+            thumbnail: x.thumbnail
+        })
     });
 }
 
@@ -123,7 +110,7 @@ function shutdown(signal) {
         if (err)
           console.log(err);
         else {
-          console.log("File written successfully");
+          console.log("Saved channels");
         }
     });
 
