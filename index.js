@@ -87,6 +87,8 @@ async function stream_analyzing(crew){
 
     yfl = streams.channels;
 
+    if (streams.list.length === 0) return;
+
     streams.list.map(function(x) {
         sendNoti({
             nickname: x.nickname,
