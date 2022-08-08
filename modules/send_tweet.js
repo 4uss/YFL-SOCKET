@@ -42,6 +42,7 @@ async function send_tweet(i){
           if (!err) {
             // now we can reference the media and post a tweet (media will attach to the tweet)
             var params = { status: `${i.nickname} odpalił stream ➡️ 
+https://www.twitch.tv/${i.nickname}
 ${i.title}
 #YFL`, media_ids: [mediaIdStr] }
        
