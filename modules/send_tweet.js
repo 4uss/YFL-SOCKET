@@ -42,7 +42,8 @@ async function send_tweet(i){
           if (!err) {
             // now we can reference the media and post a tweet (media will attach to the tweet)
             var params = { status: `${i.nickname} odpalił stream ➡️ 
-            ${i.title}`, media_ids: [mediaIdStr] }
+${i.title}
+#YFL`, media_ids: [mediaIdStr] }
        
             T.post('statuses/update', params, function (err, data, response) {
               console.log('Dodano post twitter')
