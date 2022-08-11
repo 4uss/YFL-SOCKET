@@ -21,10 +21,15 @@ const port = process.env.PORT || 3000
 */
 let yfl = {
     youngmulti: false,
+    youngmulti_game: 'Just Chatting',
     xmerghani: false,
+    xmerghani_game: 'Just Chatting',
     mrdzinold: false,
+    mrdzinold_game: 'Just Chatting',
     banduracartel: false,
+    banduracartel_game: 'Just Chatting',
     mork: false,
+    mork_game: 'Just Chatting',
     xspeedyq: false,
     xkaleson: false,
     adrian1g__: false
@@ -100,6 +105,9 @@ async function stream_analyzing(crew){
 
 function sendNoti(i){
     io.sockets.emit('live notification', i);
+
+    if(i.nickname.toLowerCase() === "xspeedyq" || i.nickname.toLowerCase() === "xkaleson" || i.nickname.toLowerCase() === "adrian1g__") return;
+
     send_tweet(i)
     //console.log(i)
 }
