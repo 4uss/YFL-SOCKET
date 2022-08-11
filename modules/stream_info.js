@@ -18,18 +18,18 @@ const stream_info = async (currentChannels) => {
     };
     let channels = {
         youngmulti: false,
-        youngmulti_game: 'Just Chatting',
         xmerghani: false,
-        xmerghani_game: 'Just Chatting',
         mrdzinold: false,
-        mrdzinold_game: 'Just Chatting',
         banduracartel: false,
-        banduracartel_game: 'Just Chatting',
         mork: false,
-        mork_game: 'Just Chatting',
         xspeedyq: false,
         xkaleson: false,
-        adrian1g__: false  
+        adrian1g__: false,
+        youngmulti_game: 'Just Chatting',
+        xmerghani_game: 'Just Chatting',
+        mrdzinold_game: 'Travel & Outdoors',
+        banduracartel_game: 'Just Chatting',
+        mork_game: 'Just Chatting',
     }
     let noti_list = [];
 
@@ -37,7 +37,7 @@ const stream_info = async (currentChannels) => {
         const resp = await axios.get(`https://api.twitch.tv/helix/streams?user_id=${process.env.YOUNGMULTI_ID}&user_id=${process.env.XMERGHANI_ID}&user_id=${process.env.MRDZINOLD_ID}&user_id=${process.env.BANDURACARTEL_ID}&user_id=${process.env.MORK_ID}&user_id=${process.env.XKALESON_ID}&user_id=${process.env.ADRIAN1G_ID}&user_id=${process.env.XSPEEDYQ_ID}`, options)
         const twitch_data = resp.data.data;
 
-        twitch_data.map(function(x) {
+        await Promise.all(twitch_data.map(async function(x) {
             const isData = isOnline(x, currentChannels);
             if(isData.status === 777){
                 noti_list.push({
@@ -51,7 +51,7 @@ const stream_info = async (currentChannels) => {
                 is not, it sets the game name to the game name. */
                 if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "xkaleson" || x.user_name.toLowerCase() === "adrian1g__") return;
 
-                channels[isData.json_name+"_game"] = x.game_name;
+                channels[`${isData.json_name}_game`] = x.game_name;
 
             }else if(isData.status === 1337){
                 channels[isData.json_name] = true;
@@ -60,17 +60,19 @@ const stream_info = async (currentChannels) => {
                 is not, it sets the game name to the game name. */
                 if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "xkaleson" || x.user_name.toLowerCase() === "adrian1g__") return;
 
-                if(currentChannels[isData.json_name+"_game"] !== x.game_name){
+                channels[`${isData.json_name}_game`] = x.game_name;
+
+                if(currentChannels[`${isData.json_name}_game`] !== x.game_name){
+                    //console.log("1337 - Ustawiono gre")
+
                     update_tweet({
                         nickname: x.user_name,
                         title: x.title,
                         game: x.game_name
                     })
-
-                    channels[isData.json_name+"_game"] = x.game_name;
                 }
             }
-        });
+        }));
 
         return {
             channels: channels,
