@@ -18,7 +18,7 @@ async function update_tweet(i){
     T.post('statuses/update', { status: `AKTUALIZACJA: ${i.nickname} gra teraz w ➡️ ${i.game}
 https://www.twitch.tv/${i.nickname}
 ${i.title}
-#YFL` }, function(err, data, response) {
+#YFL${i.game === "Grand Theft Auto V" ? (" #5CITY"):("")}` }, function(err, data, response) {
         console.log("Dodano aktualizacje "+i.nickname)
     })
 }
