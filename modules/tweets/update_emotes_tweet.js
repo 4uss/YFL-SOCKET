@@ -12,15 +12,12 @@ const T = new Twit({
     strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
 
-async function update_tweet(i){
-
-    //console.log(i)
-    T.post('statuses/update', { status: `AKTUALIZACJA: ${i.nickname} gra teraz w ➡️ ${i.game}
-https://www.twitch.tv/${i.nickname}
-${i.title}
-#YFL${i.game === "Grand Theft Auto V" ? (" #5CITY"):("")}` }, function(err, data, response) {
-        console.log("Dodano aktualizacje "+i.nickname)
+async function update_emotes_tweet(i){
+    T.post('statuses/update', { status: `BREAKING: ${i.channel} ${i.action === "ADD" ? ("dodał"):("usunął")} emotke ➡️ "${i.emote_name}"
+https://next.7tv.app/emotes/${i.emote_id}
+#YFL #7TV` }, function(err, data, response) {
+        console.log("EMOTE UPDATE "+i.channel)
     })
 }
 
-export default update_tweet;
+export default update_emotes_tweet;

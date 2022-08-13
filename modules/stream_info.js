@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import update_token from "./update_token.js";
 import {isOnline} from "../components/index.js";
-import update_tweet from "./update_tweet.js";
+import {update_game_tweet} from "./tweets/index.js";
 
 dotenv.config()
 
@@ -65,7 +65,7 @@ const stream_info = async (currentChannels) => {
                 if(currentChannels[`${isData.json_name}_game`] !== x.game_name){
                     //console.log("1337 - Ustawiono gre")
 
-                    update_tweet({
+                    update_game_tweet({
                         nickname: x.user_name,
                         title: x.title,
                         game: x.game_name

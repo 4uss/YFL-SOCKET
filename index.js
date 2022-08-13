@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
-import {stream_info, send_tweet} from "./modules/index.js";
+import {stream_info} from "./modules/index.js";
+import {send_tweet, update_emotes_tweet} from "./modules/tweets/index.js";
+import EventSource from "eventsource";
 import fs from "fs";
 dotenv.config()
 
@@ -14,6 +16,44 @@ const io = new Server(server, {
     }
 });
 const port = process.env.PORT || 3000
+const source = new EventSource(
+    "https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti"
+);
+
+/* Listening to an event source. */
+source.addEventListener(
+  "update",
+  (e) => {
+    const data = JSON.parse(e.data);
+    update_emotes_tweet({
+        emote_name: data.name,
+        emote_id: data.emote_id,
+        channel: data.channel,
+        action: data.action
+    })
+  },
+  false
+);
+
+source.addEventListener(
+  "error",
+  (e) => {
+    if (e.readyState === EventSource.CLOSED) {
+        console.log(e)
+      // Connection was closed.
+    }
+  },
+  false
+);
+
+source.addEventListener(
+  "heartbeat",
+  (e) => {
+    console.log("heartbeat")
+    // stay open and is sent every 30 seconds.
+  },
+  false
+);
 
 /* 
     false = Stream is Offline
