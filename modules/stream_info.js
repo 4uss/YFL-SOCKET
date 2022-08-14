@@ -68,7 +68,8 @@ const stream_info = async (currentChannels) => {
                     update_game_tweet({
                         nickname: x.user_name,
                         title: x.title,
-                        game: x.game_name
+                        game: x.game_name,
+                        viewer_count: x.viewer_count
                     })
                 }
             }

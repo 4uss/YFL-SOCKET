@@ -3,9 +3,10 @@ import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
 import {stream_info} from "./modules/index.js";
-import {send_tweet, update_emotes_tweet} from "./modules/tweets/index.js";
+import {send_tweet, update_emotes_tweet, send_ban_tweet} from "./modules/tweets/index.js";
 import EventSource from "eventsource";
 import fs from "fs";
+import client from './config/tmi.js';
 dotenv.config()
 
 const app = express();
@@ -17,7 +18,7 @@ const io = new Server(server, {
 });
 const port = process.env.PORT || 3000
 const source = new EventSource(
-    "https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti"
+    "https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,3xanax"
 );
 
 /* Listening to an event source. */
@@ -46,14 +47,13 @@ source.addEventListener(
   false
 );
 
-source.addEventListener(
-  "heartbeat",
-  (e) => {
-    console.log("heartbeat")
-    // stay open and is sent every 30 seconds.
-  },
-  false
-);
+client.on("ban", (channel, username, reason, userstate) => {
+  // Do your stuff.
+  send_ban_tweet({
+    channel: channel,
+    banned: username
+  })
+});
 
 /* 
     false = Stream is Offline
@@ -61,18 +61,18 @@ source.addEventListener(
 */
 let yfl = {
     youngmulti: false,
-    youngmulti_game: 'Just Chatting',
     xmerghani: false,
-    xmerghani_game: 'Just Chatting',
     mrdzinold: false,
-    mrdzinold_game: 'Just Chatting',
     banduracartel: false,
-    banduracartel_game: 'Just Chatting',
     mork: false,
-    mork_game: 'Just Chatting',
     xspeedyq: false,
     xkaleson: false,
-    adrian1g__: false
+    adrian1g__: false,
+    youngmulti_game: 'Just Chatting',
+    xmerghani_game: 'Just Chatting',
+    mrdzinold_game: 'Just Chatting',
+    banduracartel_game: 'Just Chatting',
+    mork_game: 'Just Chatting'
 }
 
 process
