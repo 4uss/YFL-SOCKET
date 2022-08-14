@@ -2,8 +2,8 @@ import tmi from "tmi.js";
 
 const opts = {
     identity: {
-        username: 'YFLUpdates',
-        password: 'oauth:whq641h6k28zr714natv58m1djraah'
+        username: process.env.TWITCH_USERNAME,
+        password: process.env.TWITCH_PASSWORD
     },
     channels: [
         'banduracartel',

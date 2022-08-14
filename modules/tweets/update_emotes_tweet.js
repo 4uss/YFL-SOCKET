@@ -1,7 +1,4 @@
 import {twit_updates} from "../../config/index.js";
-import dotenv from "dotenv";
-
-dotenv.config()
 
 async function update_emotes_tweet(i){
     twit_updates.post('statuses/update', { status: `BREAKING: ${i.channel} ${i.action === "ADD" ? ("dodał"):("usunął")} emotke ➡️ "${i.emote_name}"

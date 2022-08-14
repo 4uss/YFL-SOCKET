@@ -1,7 +1,4 @@
 import {twit_updates} from "../../config/index.js";
-import dotenv from "dotenv";
-
-dotenv.config()
 
 async function update_game_tweet(i){
 

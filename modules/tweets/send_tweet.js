@@ -1,8 +1,5 @@
-import dotenv from "dotenv";
 import {twit_updates} from "../../config/index.js";
 import imageToBase64 from "image-to-base64";
-
-dotenv.config()
 
 async function getBase64 (url){
     try {

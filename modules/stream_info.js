@@ -1,10 +1,7 @@
 import axios from "axios";
-import dotenv from "dotenv";
 import update_token from "./update_token.js";
 import {isOnline} from "../components/index.js";
 import {update_game_tweet} from "./tweets/index.js";
-
-dotenv.config()
 
 let access_token = "933f8w8bwhi9ynejxkk9631rp3pspv";
 
