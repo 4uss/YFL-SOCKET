@@ -1,4 +1,6 @@
 import Twit from "twit";
+import dotenv from "dotenv";
+dotenv.config()
 
 const T = new Twit({
     consumer_key:         process.env.TWITTER_BANS_API_KEY,
