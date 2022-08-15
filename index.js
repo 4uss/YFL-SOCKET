@@ -154,7 +154,6 @@ function sendNoti(i){
 function shutdown(signal) {
   return (err) => {
     console.log(`${ signal }...`);
-    if (err) console.error(err.stack || err);
 
     fs.writeFile("crew.json", JSON.stringify(yfl), (err) => {
         if (err)
@@ -163,6 +162,8 @@ function shutdown(signal) {
           console.log("Saved channels");
         }
     });
+    
+    if (err) console.error(err.stack || err);
 
     setTimeout(() => {
       console.log('...waited 5s, exiting.');
