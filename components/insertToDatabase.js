@@ -11,9 +11,9 @@ var connection = mysql.createPool({
     charset: "UTF8MB4_GENERAL_CI"
 });
 
-function insertToDatabase(newCustomer){
+function insertToDatabase(db, newCustomer){
 //  console.log(newCustomer)
-  connection.query("INSERT INTO bans SET ?", newCustomer, (err, res) => {
+  connection.query(`INSERT INTO ${db} SET ?`, newCustomer, (err, res) => {
       if (err) {
         console.log(err);
         return;

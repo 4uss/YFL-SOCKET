@@ -50,7 +50,7 @@ source.addEventListener(
 
 client.on("ban", (channel, username, reason, userstate) => {
   // Do your stuff.
-  insertToDatabase({
+  insertToDatabase("bans" ,{
     user: username,
     channel: channel,
     action: 'ban'
@@ -66,11 +66,27 @@ client.on("ban", (channel, username, reason, userstate) => {
 
 client.on("timeout", (channel, username, reason, duration, userstate) => {
   // Do your stuff.
-  insertToDatabase({
+  insertToDatabase("bans" ,{
     user: username,
     channel: channel,
     action: 'timeout',
     duration: duration
+  })
+});
+
+client.on("mod", (channel, username) => {
+  insertToDatabase("roles" ,{
+    user: username,
+    channel: channel,
+    action: 'modded'
+  })
+});
+
+client.on("unmod", (channel, username) => {
+  insertToDatabase("roles" ,{
+    user: username,
+    channel: channel,
+    action: 'unmod'
   })
 });
 
