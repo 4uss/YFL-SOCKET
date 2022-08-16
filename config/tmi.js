@@ -11,6 +11,9 @@ const opts = {
         'mrdzinold',
         'xmerghani',
         'youngmulti',
+        'xspeedyq',
+        'xkaleson',
+        'adrian1g__',
         '3xanax'
     ],
     connection: {

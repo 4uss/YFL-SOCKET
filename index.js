@@ -4,6 +4,7 @@ import http from "http";
 import {Server} from "socket.io";
 import {stream_info} from "./modules/index.js";
 import {send_tweet, update_emotes_tweet, send_ban_tweet} from "./modules/tweets/index.js";
+import {insertToDatabase} from "./components/index.js"
 import EventSource from "eventsource";
 import fs from "fs";
 import client from './config/tmi.js';
@@ -49,9 +50,27 @@ source.addEventListener(
 
 client.on("ban", (channel, username, reason, userstate) => {
   // Do your stuff.
+  insertToDatabase({
+    user: username,
+    channel: channel,
+    action: 'ban'
+  })
+
+  if(channel !== "#youngmulti" || channel !== "#xmerghani" || channel !== "#mrdzinold" || channel !== "#banduracartel" || channel !== "#mork") return;
+
   send_ban_tweet({
     channel: channel,
     banned: username
+  })
+});
+
+client.on("timeout", (channel, username, reason, duration, userstate) => {
+  // Do your stuff.
+  insertToDatabase({
+    user: username,
+    channel: channel,
+    action: 'timeout',
+    duration: duration
   })
 });
 
