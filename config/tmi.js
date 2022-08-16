@@ -14,7 +14,7 @@ const opts = {
         'xspeedyq',
         'xkaleson',
         'adrian1g__',
-        '3xanax'
+        '3xanax',
     ],
     connection: {
         reconnect: true // This

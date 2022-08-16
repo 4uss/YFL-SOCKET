@@ -4,7 +4,7 @@ import http from "http";
 import {Server} from "socket.io";
 import {stream_info} from "./modules/index.js";
 import {send_tweet, update_emotes_tweet, send_ban_tweet} from "./modules/tweets/index.js";
-import {insertToDatabase} from "./components/index.js"
+import {insertToDatabase} from "./components/index.js";
 import EventSource from "eventsource";
 import fs from "fs";
 import client from './config/tmi.js';
@@ -48,20 +48,15 @@ source.addEventListener(
   false
 );
 
-client.on("ban", (channel, username, reason, userstate) => {
-  // Do your stuff.
-  insertToDatabase("bans" ,{
+client.on("ban", (channel, username) => {
+
+  insertToDatabase("bans" , {
     user: username,
     channel: channel,
     action: 'ban'
   })
 
-  if(channel !== "#youngmulti" || channel !== "#xmerghani" || channel !== "#mrdzinold" || channel !== "#banduracartel" || channel !== "#mork") return;
-
-  send_ban_tweet({
-    channel: channel,
-    banned: username
-  })
+  send_ban_tweet(channel, username)
 });
 
 client.on("timeout", (channel, username, reason, duration, userstate) => {
@@ -71,22 +66,6 @@ client.on("timeout", (channel, username, reason, duration, userstate) => {
     channel: channel,
     action: 'timeout',
     duration: duration
-  })
-});
-
-client.on("mod", (channel, username) => {
-  insertToDatabase("roles" ,{
-    user: username,
-    channel: channel,
-    action: 'modded'
-  })
-});
-
-client.on("unmod", (channel, username) => {
-  insertToDatabase("roles" ,{
-    user: username,
-    channel: channel,
-    action: 'unmod'
   })
 });
 
