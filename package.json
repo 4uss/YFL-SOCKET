@@ -1,6 +1,6 @@
 {
   "name": "yfl",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,9 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@twurple/api": "^5.2.1",
+    "@twurple/auth": "^5.2.1",
+    "@twurple/chat": "^5.2.1",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "eventsource": "^2.0.2",

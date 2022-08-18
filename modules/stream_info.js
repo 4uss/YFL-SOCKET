@@ -2,8 +2,9 @@ import axios from "axios";
 import update_token from "./update_token.js";
 import {isOnline} from "../components/index.js";
 import {update_game_tweet} from "./tweets/index.js";
+import fs from "fs";
 
-let access_token = "933f8w8bwhi9ynejxkk9631rp3pspv";
+let access_token = JSON.parse(fs.readFileSync("./modules/token.json", "utf8")).token;
 
 
 const stream_info = async (currentChannels) => {
@@ -84,6 +85,13 @@ const stream_info = async (currentChannels) => {
 
             if(token.error) return;
 
+            fs.writeFile("./modules/token.json", JSON.stringify({"token":token.access_token}), (err) => {
+                if (err)
+                  console.log(err);
+                else {
+                  console.log("Saved token");
+                }
+            });
             access_token = token.access_token;
 
             return {

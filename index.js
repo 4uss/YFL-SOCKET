@@ -3,11 +3,10 @@ import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
 import {stream_info} from "./modules/index.js";
-import {send_tweet, update_emotes_tweet, send_ban_tweet} from "./modules/tweets/index.js";
-import {insertToDatabase} from "./components/index.js";
+import {send_tweet, update_emotes_tweet} from "./modules/tweets/index.js";
 import EventSource from "eventsource";
 import fs from "fs";
-import client from './config/tmi.js';
+import runTwitch from './Twitch/runTwitch.js';
 dotenv.config()
 
 const app = express();
@@ -18,9 +17,7 @@ const io = new Server(server, {
     }
 });
 const port = process.env.PORT || 3000
-const source = new EventSource(
-    "https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,3xanax"
-);
+const source = new EventSource("https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,3xanax");
 
 /* Listening to an event source. */
 source.addEventListener(
@@ -48,26 +45,7 @@ source.addEventListener(
   false
 );
 
-client.on("ban", (channel, username) => {
-
-  insertToDatabase("bans" , {
-    user: username,
-    channel: channel,
-    action: 'ban'
-  })
-
-  send_ban_tweet(channel, username)
-});
-
-client.on("timeout", (channel, username, reason, duration, userstate) => {
-  // Do your stuff.
-  insertToDatabase("bans" ,{
-    user: username,
-    channel: channel,
-    action: 'timeout',
-    duration: duration
-  })
-});
+runTwitch()
 
 /* 
     false = Stream is Offline
@@ -95,30 +73,7 @@ process
   .on('uncaughtException', shutdown('uncaughtException'));
 
 app.get('/', function (req, res) {
-    res.send(`
-    <!DOCTYPE html>
-    <html lang="en"> 
-        <head> 
-            <meta charset="utf-8" /> 
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /> 
-            <title>YFL UPDATES SOCKET</title> 
-            <meta property="og:type" content="website" /> 
-            <link rel="icon" type="image/png" sizes="560x560" href="https://cdn.beyondlabs.pl/assets/img/logo512.png" /> 
-            <style> 
-                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap'); 
-                body{ margin: 0; padding: 0; font-family: 'Roboto', sans-serif; } 
-                .bl__box{ height: 100%; width: 100%; position: absolute; text-align: left; display: grid; place-content: center; } 
-                h1{ font-weight: 100; color: black !important; } 
-                a{ font-weight: 100; color: #565ac6; text-decoration: none; } 
-            </style> 
-        </head> 
-        <body class="bl__box"> 
-            <div> 
-                <h1>YFL UPDATES SOCKET</h1> 
-                <h2>Created by <a href="https://seven7s.top/">seven7s.top</a> 
-            </div> 
-        </body>
-    </html>`)
+    res.json({"message": "wss://wss.yfl.es"})
 })
 
 io.on('connection', (socket) => {
@@ -186,6 +141,6 @@ function shutdown(signal) {
   };
 }
 server.listen(port, () => {
-    console.log(process.env.TWITCH_CLIENT_ID ? ("ENV IS WORKING"):("env is not working"), '- YFL - listening on *:3000');
+    console.log(process.env.TWITCH_CLIENT_ID ? ("SYSTEM: env is working"):("SYSTEM: env is not working"), '- YFL - listening on *:'+port);
     yfl = JSON.parse(fs.readFileSync("crew.json", "utf8"))
 });
