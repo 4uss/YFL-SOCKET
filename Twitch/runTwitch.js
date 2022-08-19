@@ -38,6 +38,7 @@ async function Main() {
 		insertToDatabase("bans" , {
 			user: user,
 			channel: channel,
+			channel_group: "YFL",
 			action: 'ban',
 			clip: createClip ? (createClip):(null)
 		})
@@ -52,6 +53,7 @@ async function Main() {
 		insertToDatabase("bans" , {
 			user: user,
 			channel: channel,
+			channel_group: "YFL",
 			action: 'timeout',
 			duration: duration
 		})
