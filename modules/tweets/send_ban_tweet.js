@@ -17,7 +17,7 @@ async function send_ban_tweet(channel, username){
     T.post('statuses/update', { status: `${username.toUpperCase()} został zbanowany na kanale ${channel}
 
 🕒 ${new Date().toLocaleString('pl')}
-#YFL #TWITCH #YFLBANS` }, function(err, data, response) {
+#TWITCH #YFLBANS` }, function(err, data, response) {
     console.log(err)
     })
 }
