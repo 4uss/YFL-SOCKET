@@ -7,7 +7,7 @@ async function update_game_tweet(i){
 https://www.twitch.tv/${i.nickname}
 👤 ${i.viewer_count}
 ${i.title}
-#YFL${i.game === "Grand Theft Auto V" ? (" #5CITY"):("")}` }, function(err, data, response) {
+#YFL${i.game === "Grand Theft Auto V" ? (" #77RP"):("")}` }, function(err, data, response) {
     //console.log(err)
         console.log("Dodano aktualizacje "+i.nickname)
     })

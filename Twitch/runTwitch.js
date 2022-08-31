@@ -43,7 +43,7 @@ async function Main() {
 			clip: createClip ? (createClip):(null)
 		})
 
-		if(channel === "#youngmulti" || channel === "#xmerghani" || channel === "#mrdzinold" || channel === "#banduracartel" || channel === "#mork" || channel === "#3xanax") {
+		if(channel === "#youngmulti" || channel === "#xmerghani" || channel === "#mrdzinold" || channel === "#banduracartel" || channel === "#mork" || channel === "#3xanax" || channel === "#xkaleson") {
 			send_ban_tweet(channel, user)
 		}
     })

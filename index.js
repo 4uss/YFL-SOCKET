@@ -64,6 +64,7 @@ let yfl = {
     xmerghani_game: 'Just Chatting',
     mrdzinold_game: 'Just Chatting',
     banduracartel_game: 'Just Chatting',
+    xkaleson_game: 'Just Chatting',
     mork_game: 'Just Chatting'
 }
 
@@ -115,7 +116,7 @@ async function stream_analyzing(crew){
 function sendNoti(i){
     io.sockets.emit('live notification', i);
 
-    if(i.nickname.toLowerCase() === "xspeedyq" || i.nickname.toLowerCase() === "xkaleson" || i.nickname.toLowerCase() === "adrian1g__") return;
+    if(i.nickname.toLowerCase() === "xspeedyq" || i.nickname.toLowerCase() === "adrian1g__") return;
 
     send_tweet(i)
     //console.log(i)

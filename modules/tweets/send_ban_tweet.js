@@ -12,7 +12,7 @@ const T = new Twit({
 })
 
 async function send_ban_tweet(channel, username){
-    if(channel === "#xspeedyq" || channel === "#xkaleson" || channel === "#adrian1g__") return;
+    if(channel === "#xspeedyq" || channel === "#adrian1g__") return;
 
     T.post('statuses/update', { status: `${username.toUpperCase()} został zbanowany na kanale ${channel}
 

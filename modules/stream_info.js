@@ -27,6 +27,7 @@ const stream_info = async (currentChannels) => {
         xmerghani_game: 'Just Chatting',
         mrdzinold_game: 'Travel & Outdoors',
         banduracartel_game: 'Just Chatting',
+        xkaleson_game: 'Just Chatting',
         mork_game: 'Just Chatting',
     }
     let noti_list = [];
@@ -47,7 +48,7 @@ const stream_info = async (currentChannels) => {
 
                 /* Checking if the user name is equal to xspeedyq, xkaleson, or adrian1g__. If it is, it returns. If it
                 is not, it sets the game name to the game name. */
-                if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "xkaleson" || x.user_name.toLowerCase() === "adrian1g__") return;
+                if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "adrian1g__") return;
 
                 channels[`${isData.json_name}_game`] = x.game_name;
 
@@ -56,7 +57,7 @@ const stream_info = async (currentChannels) => {
                 
                 /* Checking if the user name is equal to xspeedyq, xkaleson, or adrian1g__. If it is, it returns. If it
                 is not, it sets the game name to the game name. */
-                if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "xkaleson" || x.user_name.toLowerCase() === "adrian1g__") return;
+                if(x.user_name.toLowerCase() === "xspeedyq" || x.user_name.toLowerCase() === "adrian1g__") return;
 
                 channels[`${isData.json_name}_game`] = x.game_name;
 
