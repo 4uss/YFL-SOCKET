@@ -17,7 +17,7 @@ const io = new Server(server, {
     }
 });
 const port = process.env.PORT || 3000
-const source = new EventSource("https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,3xanax");
+const source = new EventSource("https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,xkaleson");
 
 /* Listening to an event source. */
 source.addEventListener(
@@ -68,11 +68,6 @@ let yfl = {
     mork_game: 'Just Chatting'
 }
 
-process
-  .on('SIGTERM', shutdown('SIGTERM'))
-  .on('SIGINT', shutdown('SIGINT'))
-  .on('uncaughtException', shutdown('uncaughtException'));
-
 app.get('/', function (req, res) {
     res.json({"message": "wss://wss.yfl.es"})
 })
@@ -121,26 +116,7 @@ function sendNoti(i){
     send_tweet(i)
     //console.log(i)
 }
-function shutdown(signal) {
-  return (err) => {
-    console.log(`${ signal }...`);
 
-    fs.writeFile("crew.json", JSON.stringify(yfl), (err) => {
-        if (err)
-          console.log(err);
-        else {
-          console.log("Saved channels");
-        }
-    });
-    
-    if (err) console.error(err.stack || err);
-
-    setTimeout(() => {
-      console.log('...waited 5s, exiting.');
-      process.exit(err ? 1 : 0);
-    }, 5000).unref();
-  };
-}
 server.listen(port, () => {
     console.log(process.env.TWITCH_CLIENT_ID ? ("SYSTEM: env is working"):("SYSTEM: env is not working"), '- YFL - listening on *:'+port);
     yfl = JSON.parse(fs.readFileSync("crew.json", "utf8"))

@@ -19,8 +19,10 @@
     "eventsource": "^2.0.2",
     "express": "^4.18.1",
     "image-to-base64": "^2.2.0",
+    "jimp": "^0.6.4",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.19",
+    "smart-promisify": "^1.0.5",
     "socket.io": "^4.5.1",
     "tmi.js": "^1.8.5",
     "twit": "^2.2.11"
