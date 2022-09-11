@@ -16,7 +16,7 @@ class TextToPicture {
   }) {
     let image;
 
-    switch (scheme.name) {
+    switch (scheme.name.toLowerCase()) {
       case 'xmerghani':
           image = await Jimp.read("https://cdn.beyondlabs.pl/yfl/game_change/xmerghani.png");
           break;
