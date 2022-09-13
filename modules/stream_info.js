@@ -82,7 +82,10 @@ const stream_info = async (currentChannels) => {
 
     } catch (err) {
         console.log(err.response)
-        if(err.code === "ETIMEDOUT") return;
+        if(err.code === "ETIMEDOUT") return {
+            error: "error",
+            message: "Something went wrong! ETIMEDOUT"
+        };
         
         if(err.response.data.status === 401 && err.response.data.error === "Unauthorized"){
             const token = await update_token();
