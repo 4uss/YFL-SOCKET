@@ -1,5 +1,5 @@
 import { RefreshingAuthProvider } from '@twurple/auth';
-import { ApiClient } from '@twurple/api';
+// import { ApiClient } from '@twurple/api';
 import { ChatClient } from '@twurple/chat';
 import { insertToDatabase } from "../components/index.js";
 import { send_ban_tweet } from "../modules/tweets/index.js"
@@ -20,27 +20,26 @@ async function Main() {
 		},
 		tokenData
 	);
-	const api = new ApiClient({authProvider});
+	// const api = new ApiClient({authProvider});
 	const chatClient = new ChatClient({ authProvider, channels: ["banduracartel", "mork", "mrdzinold", "xmerghani", "youngmulti", "xspeedyq", "xkaleson", "adrian1g__", "3xanax"]});
 	await chatClient.connect();
 
-	async function callClip(channelID){
-		const call = await api.clips.createClip({ channelId: channelID }).catch(error => {
-			return null;
-		})
+	// async function callClip(channelID){
+	// 	const call = await api.clips.createClip({ channelId: channelID }).catch(error => {
+	// 		return null;
+	// 	})
 
-		return call;
-	}
+	// 	return call;
+	// }
     chatClient.onBan(async (channel, user, msg) => {
-		const userID = await api.users.getUserByName(channel.replaceAll("#", ""));
-		const createClip = await callClip(userID?.id);
+		// const userID = await api.users.getUserByName(channel.replaceAll("#", ""));
+		// const createClip = await callClip(userID?.id);
 
 		insertToDatabase("bans" , {
 			user: user,
 			channel: channel,
 			channel_group: "YFL",
-			action: 'ban',
-			clip: createClip ? (createClip):(null)
+			action: 'ban'
 		})
 
 		if(channel === "#youngmulti" || channel === "#xmerghani" || channel === "#mrdzinold" || channel === "#banduracartel" || channel === "#mork" || channel === "#3xanax" || channel === "#xkaleson") {

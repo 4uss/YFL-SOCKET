@@ -45,7 +45,7 @@ source.addEventListener(
   false
 );
 
-runTwitch()
+//runTwitch()
 
 /* 
     false = Stream is Offline
