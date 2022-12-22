@@ -34,7 +34,7 @@ ${i.title}
 #YFL`, media_ids: [mediaIdStr] }
        
             twit_updates.post('statuses/update', params, function (err, data, response) {
-              console.log('Dodano post twitter')
+              //console.log('Dodano post twitter')
             })
           }
         })

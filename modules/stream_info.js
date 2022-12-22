@@ -1,6 +1,6 @@
 import axios from "axios";
 import update_token from "./update_token.js";
-import {isOnline} from "../components/index.js";
+import {isOnline, updateTokenDB} from "../components/index.js";
 import {update_game_tweet} from "./tweets/index.js";
 import fs from "fs";
 
@@ -92,6 +92,7 @@ const stream_info = async (currentChannels) => {
 
             if(token.error) return;
 
+            updateTokenDB(token.access_token);
             fs.writeFile("./modules/token.json", JSON.stringify({"token":token.access_token}), (err) => {
                 if (err)
                   console.log(err);

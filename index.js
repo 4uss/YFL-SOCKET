@@ -2,11 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import http from "http";
 import {Server} from "socket.io";
-import {stream_info} from "./modules/index.js";
-import {send_tweet, update_emotes_tweet} from "./modules/tweets/index.js";
-import EventSource from "eventsource";
+import {stream_info, send_whisper} from "./modules/index.js";
+import {send_tweet} from "./modules/tweets/index.js";
 import fs from "fs";
-import runTwitch from './Twitch/runTwitch.js';
 dotenv.config()
 
 const app = express();
@@ -17,40 +15,12 @@ const io = new Server(server, {
     }
 });
 const port = process.env.PORT || 3000
-const source = new EventSource("https://events.7tv.app/v1/channel-emotes?channel=xmerghani,mork,mrdzinold,banduracartel,youngmulti,xkaleson");
-
-/* Listening to an event source. */
-source.addEventListener(
-  "update",
-  (e) => {
-    const data = JSON.parse(e.data);
-    update_emotes_tweet({
-        emote_name: data.name,
-        emote_id: data.emote_id,
-        channel: data.channel,
-        action: data.action
-    })
-  },
-  false
-);
-
-source.addEventListener(
-  "error",
-  (e) => {
-    if (e.readyState === EventSource.CLOSED) {
-        console.log(e)
-      // Connection was closed.
-    }
-  },
-  false
-);
-
-//runTwitch()
 
 /* 
     false = Stream is Offline
     true = Stream is Online
 */
+
 let yfl = {
     youngmulti: false,
     xmerghani: false,
@@ -68,9 +38,29 @@ let yfl = {
     mork_game: 'Just Chatting'
 }
 
+app.set('json spaces', 2);
+app.use(express.json());
+
 app.get('/', function (req, res) {
     res.json({"message": "wss://wss.yfl.es"})
 })
+app.post("/send/whisper", async (req, res) => {
+    if (!req.body) {
+        return res.status(400).send({
+          message: "Content can not be empty!"
+        });
+    }
+    if(req.headers.id !== process.env.BOT_ID && req.headers.token !== process.env.TOKEN){
+        return res.status(401).send({
+            message: "Unauthorized. Invalid token!"
+        });
+    }
+    const { to, message } = req.body;
+    res.status(200).send({
+        message: "Success"
+    });
+    await send_whisper(to, message);
+});
 
 io.on('connection', (socket) => {
     //console.log('a user connected');
@@ -114,7 +104,7 @@ function sendNoti(i){
     if(i.nickname.toLowerCase() === "xspeedyq" || i.nickname.toLowerCase() === "adrian1g__") return;
 
     send_tweet(i)
-    //console.log(i)
+    // console.log(i)
 }
 
 server.listen(port, () => {

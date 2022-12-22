@@ -32,7 +32,7 @@ Gra teraz w ${i.game}
 #YFL${i.game === "Grand Theft Auto V" ? (" #5city"):("")}`, media_ids: [mediaIdStr] }
        
             twit_updates.post('statuses/update', params, function (err, data, response) {
-              console.log('Aktualizacja gry ', i.nickname)
+              //console.log('Aktualizacja gry ', i.nickname)
             })
           }
         })
